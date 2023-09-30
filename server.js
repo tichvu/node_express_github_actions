@@ -5,7 +5,7 @@ var app = express()
 const SERVER_PORT = 3000
 const SERVER_HOST = "localhost"
 // Serve static files (like index.html) from a directory (public in this example)
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
