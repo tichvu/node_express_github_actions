@@ -1,9 +1,56 @@
 <html>
     <head>
         <title>Home Page</title>
+        
     </head>
     <body>
         <h1>Links Page</h1>
+        <p><a href="/">Index Page</a></p>
         <p><a href="/admin">Admin Page</a></p>
+        <p><a id="profileAction" href="#">Profile Page</a></p>
+        <p><a href="/user/123">User</a></p>
+        <p><a href="/valueofday/1980-01-24">Value of day</a></p>
+        
     </body>
+
+<script>
+  // Get a reference to the button element by its ID
+  const profileAction = document.getElementById('profileAction');
+
+  // Define the function to handle the click event
+  function handleProfileAction() {
+    const url = '/profile'; // Replace with your API endpoint
+    const nameVal = prompt("Please input your name: ");
+    const data = {
+      name: nameVal
+    };
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Set the content type to JSON if sending JSON data
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the response body as JSON
+      })
+      .then((responseData) => {
+        console.info(responseData);
+        alert('Response data:' + responseData.name);
+      })
+      .catch((error) => {
+        alert('Error making POST request:', error);
+      });
+  }
+// Add a click event listener to the button
+profileAction.addEventListener('click', handleProfileAction);
+
+</script>
+
 </html>
